@@ -1,3 +1,4 @@
+<img width="778" height="338" alt="Screenshot 2026-05-18 182623" src="https://github.com/user-attachments/assets/fd88f3d7-16a3-4a67-87a1-e9b61d3730c2" />
 # PHP_Laravel12_Env_Keys_Checker
 
 ## Project Description
