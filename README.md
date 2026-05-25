@@ -359,5 +359,9 @@ PHP_Laravel12_Env_Keys_Checker/
 ├── composer.json                   # Contains msamgan/laravel-env-keys-checker dependency
 └── composer.lock
 ```
+<<<<<<< HEAD
 <img width="778" height="338" alt="Screenshot 2026-05-18 182623" src="https://github.com/user-attachments/assets/a1360c96-b4ea-451f-b913-6daf8c3fc859" />
+=======
+<img width="778" height="338" alt="Screenshot 2026-05-18 182623" src="https://github.com/user-attachments/assets/b65f47fe-d82f-4156-aa5f-c02e1a521ee0" />
+>>>>>>> development
 ---
