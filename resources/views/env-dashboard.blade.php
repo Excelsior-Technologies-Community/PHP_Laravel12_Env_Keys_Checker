@@ -1,106 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>ENV Health Dashboard</title>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ENV Health Dashboard</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <meta http-equiv="refresh" content="20">
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #f4f7fc;
+            background: #0f172a;
             font-family: Arial, sans-serif;
+            color: white;
         }
 
-        .main-title {
-            font-size: 35px;
+        .dashboard-title {
+            font-size: 42px;
             font-weight: bold;
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card-box {
-
-            border: none;
-
-            border-radius: 18px;
-
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 22px;
             padding: 30px;
-
-            background: white;
-
-            box-shadow:
-                0 5px 25px rgba(0, 0, 0, .08);
-
-            transition: .4s;
+            transition: 0.4s;
+            height: 100%;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .card-box:hover {
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2);
+        }
 
-            transform: translateY(-5px);
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: auto;
+            margin-bottom: 18px;
+        }
 
+        .blue {
+            background: rgba(59, 130, 246, .2);
+            color: #60a5fa;
+        }
+
+        .green {
+            background: rgba(34, 197, 94, .2);
+            color: #4ade80;
+        }
+
+        .red {
+            background: rgba(239, 68, 68, .2);
+            color: #f87171;
         }
 
         .count {
-
-            font-size: 40px;
-
+            font-size: 42px;
             font-weight: bold;
-
-            margin-top: 15px;
-
         }
 
-        .status-good {
+        .sub-text {
+            color: #cbd5e1;
+            margin-top: 8px;
+            font-size: 15px;
+        }
 
-            color: green;
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
 
-            font-size: 18px;
+        .progress {
+            height: 28px;
+            border-radius: 30px;
+            background: #1e293b;
+        }
 
+        .progress-bar {
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .search-input {
+            background: #1e293b;
+            border: none;
+            color: white;
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+            opacity: 1;
+        }
+
+        .search-input:focus {
+            background: #1e293b;
+            color: white;
+            box-shadow: none;
+        }
+
+        .key-item {
+            background: #1e293b;
+            border-left: 5px solid #ef4444;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
             font-weight: 600;
-
+            transition: .3s;
         }
 
-        .status-bad {
+        .key-item:hover {
+            transform: translateX(5px);
+        }
 
-            color: red;
-
-            font-size: 18px;
-
+        .btn-custom {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 14px;
             font-weight: 600;
-
+            transition: .3s;
         }
 
-        .key-box {
+        .btn-custom:hover {
+            transform: translateY(-2px);
+        }
 
-            padding: 10px;
+        .status-box {
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
 
-            border-radius: 10px;
+        .healthy {
+            background: rgba(34, 197, 94, .15);
+            color: #4ade80;
+        }
 
-            background: #ffeaea;
-
-            margin-bottom: 10px;
-
+        .danger-status {
+            background: rgba(239, 68, 68, .15);
+            color: #f87171;
         }
 
         .scan-box {
+            background: #1e293b;
+            border-radius: 15px;
+            padding: 18px;
+        }
 
-            background: #edf3ff;
+        .badge-level {
+            font-size: 15px;
+            padding: 10px 18px;
+            border-radius: 30px;
+        }
 
-            padding: 15px;
-
-            border-radius: 12px;
-
+        .footer-text {
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 40px;
         }
     </style>
 
@@ -110,68 +196,75 @@
 
     <div class="container py-5">
 
-        <h1 class="text-center main-title">
-
+        <h1 class="dashboard-title">
             ENV Health Dashboard
-
         </h1>
 
+        @if(session('success'))
+
+            <div class="alert alert-success border-0 shadow-sm">
+                {{ session('success') }}
+            </div>
+
+        @endif
 
         <div class="row g-4">
 
             <div class="col-md-4">
 
-                <div class="card-box text-center">
+                <div class="glass-card text-center">
 
-                    <i class="bi bi-file-earmark fs-1"></i>
+                    <div class="icon-box blue">
+                        <i class="bi bi-file-earmark-code"></i>
+                    </div>
 
                     <div class="count">
-
                         {{ $total }}
-
                     </div>
 
-                    <p>Total Keys</p>
+                    <div class="sub-text">
+                        Total Environment Keys
+                    </div>
 
                 </div>
 
             </div>
 
-
-
             <div class="col-md-4">
 
-                <div class="card-box text-center">
+                <div class="glass-card text-center">
 
-                    <i class="bi bi-check-circle fs-1"></i>
+                    <div class="icon-box green">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
 
                     <div class="count text-success">
-
                         {{ $present }}
-
                     </div>
 
-                    <p>Present Keys</p>
+                    <div class="sub-text">
+                        Present & Verified Keys
+                    </div>
 
                 </div>
 
             </div>
 
-
-
             <div class="col-md-4">
 
-                <div class="card-box text-center">
+                <div class="glass-card text-center">
 
-                    <i class="bi bi-exclamation-triangle fs-1"></i>
-
-                    <div class="count text-danger">
-
-                        {{ $missingCount }}
-
+                    <div class="icon-box red">
+                        <i class="bi bi-shield-exclamation"></i>
                     </div>
 
-                    <p>Missing Keys</p>
+                    <div class="count text-danger">
+                        {{ $missingCount }}
+                    </div>
+
+                    <div class="sub-text">
+                        Missing Environment Keys
+                    </div>
 
                 </div>
 
@@ -179,103 +272,181 @@
 
         </div>
 
+        <div class="glass-card mt-5">
 
-        <div class="row mt-5">
+            <div class="d-flex justify-content-between align-items-center">
 
-            <div class="col-md-8">
+                <h3 class="section-title mb-0">
+                    Environment Security Health
+                </h3>
 
-                <div class="card-box">
+                <span class="badge bg-info badge-level">
+                    {{ $healthPercentage }}% Secure
+                </span>
 
-                    <h3>
+            </div>
 
-                        Missing Key Report
+            <div class="progress mt-4">
 
-                    </h3>
+                <div class="progress-bar
+                {{ $healthPercentage >= 80 ? 'bg-success' : ($healthPercentage >= 50 ? 'bg-warning' : 'bg-danger') }}"
+                    style="width: {{ $healthPercentage }}%">
 
-                    <hr>
-
-
-                    @if($missingCount>0)
-
-                    @foreach($missingKeys as $key)
-
-                    <div class="key-box">
-
-                        <i class="bi bi-x-circle"></i>
-
-                        {{ $key }}
-
-                    </div>
-
-                    @endforeach
-
-                    @else
-
-                    <div
-                        class="alert alert-success">
-
-                        All Environment Keys Found
-
-                    </div>
-
-                    @endif
-
-
-                    <a href="/export-report"
-                        class="btn btn-primary mt-3">
-
-                        <i class="bi bi-download"></i>
-
-                        Download Report
-
-                    </a>
+                    {{ $healthPercentage }}%
 
                 </div>
 
             </div>
 
+        </div>
 
+        <div class="row mt-5 g-4">
 
-            <div class="col-md-4">
+            <div class="col-lg-8">
 
-                <div class="card-box">
+                <div class="glass-card">
 
-                    <h4>Environment Status</h4>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
 
-                    <hr>
+                        <h3 class="section-title mb-0">
+                            Missing Key Report
+                        </h3>
 
-                    @if($missingCount>0)
+                        <form method="GET">
 
-                    <p class="status-bad">
+                            <input type="text" name="search" placeholder="Search missing key..."
+                                class="form-control search-input" value="{{ request('search') }}">
 
-                        ⚠ Missing Configuration Found
+                        </form>
 
-                    </p>
+                    </div>
+
+                    @if($missingCount > 0)
+
+                        @foreach($missingKeys as $key)
+
+                            <div class="key-item">
+
+                                <i class="bi bi-x-circle-fill text-danger"></i>
+
+                                {{ $key }}
+
+                            </div>
+
+                        @endforeach
 
                     @else
 
-                    <p class="status-good">
+                        <div class="status-box healthy">
 
-                        ✔ Environment Healthy
+                            <i class="bi bi-check-circle-fill"></i>
 
-                    </p>
+                            All Environment Keys Found Successfully
+
+                        </div>
 
                     @endif
 
+                    <div class="mt-4 d-flex gap-3 flex-wrap">
+
+                        <a href="/export-report" class="btn btn-primary btn-custom">
+
+                            <i class="bi bi-download"></i>
+
+                            Export Report
+
+                        </a>
+
+                        <a href="/auto-add-keys" class="btn btn-success btn-custom">
+
+                            <i class="bi bi-plus-circle"></i>
+
+                            Auto Add Keys
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="glass-card">
+
+                    <h3 class="section-title">
+                        Environment Status
+                    </h3>
+
+                    @if($missingCount > 0)
+
+                        <div class="status-box danger-status">
+
+                            ⚠ Missing Configuration Found
+
+                        </div>
+
+                    @else
+
+                        <div class="status-box healthy">
+
+                            ✔ Environment Healthy
+
+                        </div>
+
+                    @endif
 
                     <div class="scan-box mt-4">
 
-                        <b>Last Scan</b>
+                        <h5>
+                            <i class="bi bi-clock-history"></i>
+                            Last Scan
+                        </h5>
 
-                        <br><br>
+                        <p class="mt-3 mb-0">
+                            {{ $scanTime }}
+                        </p>
 
-                        {{ $scanTime }}
+                    </div>
+
+                    <div class="mt-4">
+
+                        <h5 class="mb-3">
+                            Security Level
+                        </h5>
+
+                        @if($healthPercentage >= 80)
+
+                            <span class="badge bg-success badge-level">
+                                HIGH SECURITY
+                            </span>
+
+                        @elseif($healthPercentage >= 50)
+
+                            <span class="badge bg-warning badge-level">
+                                MEDIUM SECURITY
+                            </span>
+
+                        @else
+
+                            <span class="badge bg-danger badge-level">
+                                LOW SECURITY
+                            </span>
+
+                        @endif
 
                     </div>
 
                 </div>
 
             </div>
+
+        </div>
+
+        <div class="footer-text">
+
+            Laravel 12 ENV Monitoring System • Real-Time Security Dashboard
 
         </div>
 

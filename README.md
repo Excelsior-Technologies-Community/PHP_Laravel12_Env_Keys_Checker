@@ -360,7 +360,11 @@ PHP_Laravel12_Env_Keys_Checker/
 └── composer.lock
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 <img width="778" height="338" alt="Screenshot 2026-05-18 182623" src="https://github.com/user-attachments/assets/a1360c96-b4ea-451f-b913-6daf8c3fc859" />
+=======
+<img width="778" height="338" alt="Screenshot 2026-05-18 182623" src="https://github.com/user-attachments/assets/fd88f3d7-16a3-4a67-87a1-e9b61d3730c2" />
+>>>>>>> main
 =======
 <img width="778" height="338" alt="Screenshot 2026-05-18 182623" src="https://github.com/user-attachments/assets/b65f47fe-d82f-4156-aa5f-c02e1a521ee0" />
 >>>>>>> development

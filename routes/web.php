@@ -7,6 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/env-dashboard',[EnvDashboardController::class,'index']);
+Route::get('/env-dashboard', [EnvDashboardController::class, 'index']);
 
-Route::get('/export-report',[EnvDashboardController::class,'export']);
+Route::get('/export-report', [EnvDashboardController::class, 'export']);
+
+Route::get('/auto-add-keys', [EnvDashboardController::class, 'autoAdd']);
